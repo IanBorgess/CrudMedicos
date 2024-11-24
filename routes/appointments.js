@@ -5,7 +5,9 @@ const Appointment = require("../models/Appointment");
 // POST - Adicionar uma nova consulta
 router.post("/", async (req, res) => {
   try {
-    const { nomePaciente, nomeDoutor, data, descricao } = req.body; // Corrigido para "data"
+    const { nomePaciente, nomeDoutor, data, descricao } = req.body.nomePaciente 
+    ? req.body 
+    : req.query; // Prioriza req.body, mas aceita req.query
     
     // Validação simples (pode ser expandida conforme necessário)
     if (!nomePaciente || !nomeDoutor || !data) {
